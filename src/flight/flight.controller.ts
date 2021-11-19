@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { FlightMSG } from 'src/common/constants';
 import { IFlight } from 'src/common/interfaces/flight.interface';
@@ -18,5 +18,15 @@ export class FlightController {
     @Get()
     findAll(): Observable<IFlight[]> {
         return this._clientProxyFlight.send(FlightMSG.FIND_ALL, '');
+    }
+
+    @Get(':id')
+    findOne(@Param('id') id: string, @Body() flightDTO: FlightDTO): Observable<IFlight> {
+        return this._clientProxyFlight.send(FlightMSG.FIND_ONE, id);
+    }
+
+    @Put(':id')
+    update(@Param('id') id: string, @Body() flightDTO: FlightDTO): Observable<IFlight> {
+        return this._clientProxyFlight.send(FlightMSG.UPDATE, id);
     }
 }
