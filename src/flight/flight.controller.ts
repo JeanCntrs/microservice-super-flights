@@ -27,6 +27,6 @@ export class FlightController {
 
     @Put(':id')
     update(@Param('id') id: string, @Body() flightDTO: FlightDTO): Observable<IFlight> {
-        return this._clientProxyFlight.send(FlightMSG.UPDATE, id);
+            return this._clientProxyFlight.send(FlightMSG.UPDATE, id);
     }
 }
