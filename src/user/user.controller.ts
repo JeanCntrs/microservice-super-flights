@@ -1,10 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { identity, Observable } from 'rxjs';
 import { UserMSG } from 'src/common/constants';
 import { IUser } from 'src/common/interfaces/user.interface';
 import { ClientProxySuperFlights } from 'src/common/proxy/client.proxy';
 import { UserDTO } from './dto/uset.dto';
 
+@ApiTags('users')
 @Controller('api/v2/users')
 export class UserController {
     constructor(private readonly clientProxy: ClientProxySuperFlights) { }
